@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
@@ -13,42 +12,61 @@ import Catering from './Page/Catering';
 import How from './Components/How';
 import Testimonials from './Page/Testimonials';
 import Faq from './Page/Faq';
+import Register from './Page/Register';
+import AuthProvider from './AuthProvider/AuthProvider';
+import MenusDetails from './Page/MenusDetails';
+import Trending from './Components/Trending';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
-    children:[
+    element: <Main ></Main>,
+    children: [
       {
-        path:'/',
-        element:<Home></Home>
+        path: '/',
+        element: <Home></Home>
       },
       {
-        path:'/menus',
-        element:<Menus></Menus>
+        path: '/menus',
+        element: <Menus></Menus>,
+        loader: () => fetch('http://localhost:5000/food')
       },
       {
-        path:'/catering',
-        element:<Catering></Catering>
+        path:'/foodDetails/:id',
+        element:<MenusDetails></MenusDetails>,
+        loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`)
       },
       {
-        path:'/how',
-        element:<How></How>
+        path: '/catering',
+        element: <Catering></Catering>
       },
       {
-        path:'/testimonials',
-        element:<Testimonials></Testimonials>
+        path: '/how',
+        element: <How></How>
       },
       {
-        path:'/faq',
-        element:<Faq></Faq>
+        path: '/testimonials',
+        element: <Testimonials></Testimonials>
+      },
+      {
+        path: '/faq',
+        element: <Faq></Faq>
+      },
+      {
+        path: '/register',
+        element: <Register></Register>
+      },
+      {
+        path:'/trending',
+        element: <Trending></Trending>,
+        loader: () => fetch('http://localhost:5000/food')
       }
     ]
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-    </StrictMode>,
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
 )
