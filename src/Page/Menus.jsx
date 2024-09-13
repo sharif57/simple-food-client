@@ -13,9 +13,11 @@ const Menus = () => {
   return <div>
     <div className="px-9 py-10 flex flex-row gap-11">
       <button className="btn hover:text-white text-black hover:bg-[#fdb64e] ">Full menus</button>
-      <button className="btn hover:text-white text-black hover:bg-[#fdb64e]">Enteree</button>
+      <button className="btn hover:text-white text-black hover:bg-[#fdb64e]">Dinner</button>
+      <button className="btn hover:text-white text-black hover:bg-[#fdb64e]">Lunch</button>
       <button className="btn hover:text-white text-black hover:bg-[#fdb64e]">Breakfast</button>
-      <button className="btn hover:text-white text-black hover:bg-[#fdb64e]">Snacks</button>
+      <button className="btn hover:text-white text-black hover:bg-[#fdb64e]">Snack</button>
+      
     </div>
 
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 px-9">
