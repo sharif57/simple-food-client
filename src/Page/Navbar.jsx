@@ -85,6 +85,8 @@ const Navbar = () => {
       <Link to={'/menus'}>Ours menus</Link>
       <Link to={'/catering'}>Catering</Link>
       <Link to={'/how'}>How it Work</Link>
+      <Link to={'/testimonials'}>testimonials</Link>
+      <Link to={'/faq'}>Faq</Link>
 
       <li><a>Item 3</a></li>
     </ul>

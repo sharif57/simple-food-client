@@ -11,6 +11,8 @@ import Main from './Layout/Main';
 import Menus from './Page/Menus';
 import Catering from './Page/Catering';
 import How from './Components/How';
+import Testimonials from './Page/Testimonials';
+import Faq from './Page/Faq';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
       {
         path:'/how',
         element:<How></How>
+      },
+      {
+        path:'/testimonials',
+        element:<Testimonials></Testimonials>
+      },
+      {
+        path:'/faq',
+        element:<Faq></Faq>
       }
     ]
   },
