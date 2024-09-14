@@ -44,7 +44,7 @@ const AllMenus = () => {
                                 const remaining = foods.filter(i => i._id !== _id);
                                 setFoods(remaining)
                                 // console.log('delete');
-                                // setSort(remaining)
+                              
                             }
                         })
                 }
@@ -108,7 +108,7 @@ const AllMenus = () => {
                                     <button className="btn btn-ghost btn-xs">Small Meal</button>
                                 </th>
                                 <th className="flex gap-4">
-                                    <Link> <BiEdit className="size-8"></BiEdit></Link>
+                                    <Link  to={`/dashboard/update/${food._id}`}> <BiEdit className="size-8"></BiEdit></Link>
                                     <Link onClick={() => handleDelete(food._id)}><RiDeleteBin5Line className="size-8" />                            </Link>
                                 </th>
                             </tr>

@@ -19,6 +19,7 @@ import Trending from './Components/Trending';
 import Dashboard from './Dashboard/Dashboard';
 import AllMenus from './Dashboard/AllMenus';
 import AddMenu from './Dashboard/AddMenu';
+import FoodUpdate from './Dashboard/FoodUpdate';
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,11 @@ const router = createBrowserRouter([
       {
         path:'addMenu',
         element:<AddMenu></AddMenu>
+      },
+      {
+        path:'update/:id',
+        element:<FoodUpdate></FoodUpdate>,
+        loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`)
       }
     ]
   }
