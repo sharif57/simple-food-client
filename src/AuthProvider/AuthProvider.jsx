@@ -101,11 +101,10 @@
 
 
 
-import { createUserWithEmailAndPassword , signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { createContext, useState } from "react";
-// import UseAxiosPublic from "../hooks/useAxiosPublic";
 
 
 

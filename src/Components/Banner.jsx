@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import { FaArrowTrendUp } from "react-icons/fa6";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Banner = () => {
+    const {user} = useContext(AuthContext)
     return (
         <div className="flex justify-around items-center flex-wrap p-6 px-8 bg-gray-100">
             {/* Left Section */}
             <div className="w-full md:w-1/2 mb-6 md:mb-0">
                 <h1 className="text-4xl md:text-6xl font-bold">
-                    Keep track of <span className="text-[#6ea963]">Fitness Goals</span>
+                    Keep track of <span className="text-[#6ea963]">Fitness Goals</span> 
+                    <h1>name: {user?.name}</h1>
                 </h1>
                 <p className="text-lg mt-4">Order on Simply Good Food</p>
                 <button className="btn btn-warning mt-6">Explore Menu <FaArrowTrendUp className="size-7" />                </button>

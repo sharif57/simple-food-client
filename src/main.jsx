@@ -16,6 +16,9 @@ import Register from './Page/Register';
 import AuthProvider from './AuthProvider/AuthProvider';
 import MenusDetails from './Page/MenusDetails';
 import Trending from './Components/Trending';
+import Dashboard from './Dashboard/Dashboard';
+import AllMenus from './Dashboard/AllMenus';
+import AddMenu from './Dashboard/AddMenu';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +66,21 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path:'/dashboard',
+    element:<Dashboard></Dashboard>,
+    children:[
+      {
+        path:'allMenus',
+        element:<AllMenus></AllMenus>,
+        loader: () => fetch('http://localhost:5000/food')
+      },
+      {
+        path:'addMenu',
+        element:<AddMenu></AddMenu>
+      }
+    ]
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
