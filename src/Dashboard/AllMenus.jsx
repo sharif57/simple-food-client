@@ -3,15 +3,55 @@ import { BiEdit } from "react-icons/bi";
 import { PiPlus } from "react-icons/pi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AllMenus = () => {
 
     const [foods, setFoods] = useState([])
+
     useEffect(() => {
         fetch('http://localhost:5000/food')
             .then(res => res.json())
             .then(data => setFoods(data))
     }, [])
+
+
+    const handleDelete = _id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://localhost:5000/delete/${_id}`, {
+                        method: 'DELETE'
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.deletedCount > 0) {
+
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your item has been deleted.",
+                                    icon: "success"
+                                });
+
+                                const remaining = foods.filter(i => i._id !== _id);
+                                setFoods(remaining)
+                                // console.log('delete');
+                                // setSort(remaining)
+                            }
+                        })
+                }
+            })
+
+    }
+
 
     return <div className="bg-white p-4 rounded-lg">
         <div className="flex justify-around items-center mb-10">
@@ -27,7 +67,7 @@ const AllMenus = () => {
                 <thead className="bg-yellow-200">
                     <tr>
                         <th>
-                        S.no 
+                            S.no
                         </th>
                         <th>Image</th>
                         <th>Menu name</th>
@@ -40,11 +80,11 @@ const AllMenus = () => {
                 <tbody>
                     {/* row 1 */}
                     {
-                        foods.map((food, index) =>
+                        foods.reverse().map((food, index) =>
                             <tr key={food._id}>
                                 <th>
                                     <label>
-                                    {index +1}
+                                        {index + 1}
                                     </label>
                                 </th>
                                 <td>
@@ -63,13 +103,13 @@ const AllMenus = () => {
                                     {food.name}
 
                                 </td>
-                                <td>{ food.meal_plan}</td>
+                                <td>{food.meal_plan}</td>
                                 <th>
                                     <button className="btn btn-ghost btn-xs">Small Meal</button>
                                 </th>
                                 <th className="flex gap-4">
                                     <Link> <BiEdit className="size-8"></BiEdit></Link>
-                                    <Link><RiDeleteBin5Line className="size-8" />                            </Link>
+                                    <Link onClick={() => handleDelete(food._id)}><RiDeleteBin5Line className="size-8" />                            </Link>
                                 </th>
                             </tr>
                         )
