@@ -26,7 +26,7 @@ const FoodUpdate = () => {
         const newPost = { name, image, price, protein, carbs, fat, details, ingredients, instructions, meal_plan, meal }
         console.log(newPost);
 
-        fetch(`http://localhost:5000/foodUpdate/${items._id}`, {
+        fetch(`https://simple-food-server.vercel.app/foodUpdate/${items._id}`, {
             method: 'PUT',
             headers: {
                 "content-type": "application/json"
@@ -43,14 +43,14 @@ const FoodUpdate = () => {
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
-                    navigate('/dashboard/addMenu')
+                    navigate('/dashboard/allMenus')
                 }
             })
     }
 
     return <div>
         <Link to={'/dashboard/allMenus'} className="flex gap-3 items-center mb-4"><FaArrowLeft />        Back</Link>
-        <h1 className="text-2xl font-semibold text-green-400">Add Food menu</h1>
+        <h1 className="text-2xl font-semibold text-green-400">Update Food menu</h1>
         <div className="mt-7">
             <form onSubmit={handleUpdate}>
                 <div className="flex items-center justify-between gap-6 ">

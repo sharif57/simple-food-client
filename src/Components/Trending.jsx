@@ -6,12 +6,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
 import { FaStar } from 'react-icons/fa6';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Trending = () => {
     const [foods, setFood] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/food')
+        fetch('https://simple-food-server.vercel.app/food')
             .then(res => res.json())
             .then(data => setFood(data))
             .catch(err => console.error("Failed to fetch food data:", err)); 
@@ -42,7 +43,7 @@ const Trending = () => {
                                     </p>
                                     <h1 className='text-2xl font-bold'>{food.name}</h1>
                                     <p className='font-bold'>${food.price}</p>
-                                    <button className='btn bg-[#6ea963]'>Add to cart</button>
+                                    <Link  to={`/foodDetails/${food._id}`} className='btn bg-[#6ea963]'>Add to cart</Link>
                                     <div className='flex justify-around items-center text-red-400'>
                                         <p>Protein {food.protein}g</p>/
                                         <p>Carbs {food.carbs}g</p>/

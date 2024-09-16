@@ -1,42 +1,17 @@
 
-// import { Link } from "react-router-dom";
-
-// const Dashboard = () => {
-
-//     return (
-//         <div>
-//             {/* Render the Navbar at the top */}
-
-//             <div className="flex">
-//                 {/* Dashboard Sidebar */}
-//                 <div className="w-64 min-h-screen bg-[#fdfdfd] pt-6  border-2">
 
 
-//                     <Link to={'/dashboard/allMenus'}
-//                         className={"btn  hover:btn-success w-full"}>
-//                         Manage Menu
-//                     </Link>
-//                 </div>
-
-
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Dashboard;
-
-
+import { FaArrowLeft } from "react-icons/fa6";
 import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
     return (
         <div>
-            {/* Your Navbar */}
+            {/* Navbar */}
             <div className="navbar bg-base-100 max-w-7xl shadow-lg mx-auto">
                 <div className="navbar bg-base-100 max-w-7xl  shadow-lg mx-auto">
                     <div className="flex-1">
-                        <Link to={'/'} className="btn text-xl size-20">
+                        <Link to={'/dashboard/allMenus'} className="btn text-xl size-20">
                             <img src="/logo.png" alt="Logo" />
                         </Link>
                     </div>
@@ -71,16 +46,29 @@ const Dashboard = () => {
 
             <div className="flex">
                 {/* Sidebar */}
-                <div className="w-64 min-h-screen bg-[#fdfdfd] pt-6 border-2">
+                <div className="w-64 min-h-screen bg-[#fdfdfd] pt-6 border-2 space-y-3">
                     <Link to={'/dashboard/allMenus'}
                         className={"btn hover:btn-success w-full"}>
                         Manage Menu
                     </Link>
+                    <Link to={'/dashboard/allMenus'}
+                        className={"btn hover:btn-success w-full"}>
+                        transactions
+                    </Link>
+                    <Link to={'/dashboard/allMenus'}
+                        className={"btn hover:btn-success w-full"}>
+                        Manage Testimonials
+                    </Link>
+                    <div className="pt-20">
+                        <Link to={'/'} className="flex gap-3 items-center justify-center text-center mb-4"><FaArrowLeft />
+                            Back to home
+                        </Link>
+                    </div>
                 </div>
 
                 {/* Main content area where nested routes will be rendered */}
                 <div className="flex-grow p-6 bg-gray-100">
-                    <Outlet /> 
+                    <Outlet />
                 </div>
             </div>
         </div>

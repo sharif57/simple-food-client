@@ -61,7 +61,7 @@ const Navbar = () => {
         {/* Navbar End */}
         <div className="navbar-end">
           {/* If user is not logged in, show login and register buttons */}
-          {user ? (
+          {!user ? (
             <>
               <Link to={'/login'} className="btn btn-success mr-6 btn-outline">Log in</Link>
               <Link to={'/register'} className="btn btn-success">Sign up</Link>

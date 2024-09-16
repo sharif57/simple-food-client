@@ -20,11 +20,14 @@ import Dashboard from './Dashboard/Dashboard';
 import AllMenus from './Dashboard/AllMenus';
 import AddMenu from './Dashboard/AddMenu';
 import FoodUpdate from './Dashboard/FoodUpdate';
+import Login from './Page/Login';
+import Error from './Page/Error';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main ></Main>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: '/',
@@ -33,12 +36,12 @@ const router = createBrowserRouter([
       {
         path: '/menus',
         element: <Menus></Menus>,
-        loader: () => fetch('http://localhost:5000/food')
+        loader: () => fetch('https://simple-food-server.vercel.app/food')
       },
       {
-        path:'/foodDetails/:id',
-        element:<MenusDetails></MenusDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`)
+        path: '/foodDetails/:id',
+        element: <MenusDetails></MenusDetails>,
+        loader: ({ params }) => fetch(`https://simple-food-server.vercel.app/foods/${params.id}`)
       },
       {
         path: '/catering',
@@ -59,38 +62,41 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      }, {
+        path: '/login',
+        element: <Login></Login>
       },
       {
-        path:'/trending',
+        path: '/trending',
         element: <Trending></Trending>,
-        loader: () => fetch('http://localhost:5000/food')
+        loader: () => fetch('https://simple-food-server.vercel.app/food')
       }
     ]
   },
   {
-    path:'/dashboard',
-    element:<Dashboard></Dashboard>,
-    children:[
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
       {
-        path:'allMenus',
-        element:<AllMenus></AllMenus>,
-        loader: () => fetch('http://localhost:5000/food')
+        path: 'allMenus',
+        element: <AllMenus></AllMenus>,
+        loader: () => fetch('https://simple-food-server.vercel.app/food')
       },
       {
-        path:'addMenu',
-        element:<AddMenu></AddMenu>
+        path: 'addMenu',
+        element: <AddMenu></AddMenu>
       },
       {
-        path:'update/:id',
-        element:<FoodUpdate></FoodUpdate>,
-        loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`)
+        path: 'update/:id',
+        element: <FoodUpdate></FoodUpdate>,
+        loader: ({ params }) => fetch(`https://simple-food-server.vercel.app/foods/${params.id}`)
       }
     ]
   }
 ]);
 
 createRoot(document.getElementById('root')).render(
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
 )

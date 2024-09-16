@@ -25,7 +25,7 @@ const AddMenu = () => {
         const newPost = { name, image, price, protein, carbs, fat, details, ingredients, instructions, meal_plan, meal }
         console.log(newPost);
 
-        fetch('http://localhost:5000/food', {
+        fetch('https://simple-food-server.vercel.app/food', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newPost)

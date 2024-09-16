@@ -10,7 +10,7 @@ const AllMenus = () => {
     const [foods, setFoods] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/food')
+        fetch('https://simple-food-server.vercel.app/food')
             .then(res => res.json())
             .then(data => setFoods(data))
     }, [])
@@ -28,7 +28,7 @@ const AllMenus = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:5000/delete/${_id}`, {
+                    fetch(`https://simple-food-server.vercel.app/delete/${_id}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())
